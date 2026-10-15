@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#15151D">
+<title>Bupa México · Diagnóstico de experiencia del cliente</title>
+<meta name="description" content="Diagnóstico breve de CX sobre el recorrido público de Bupa México y Blua: evidencia del asistente virtual, recorrido del reembolso y preguntas para la conversación.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#15151D;--ink-soft:#2C2C38;--muted:#6B6B78;
+  --line:#E4DFD8;--line-strong:#CFC8BE;
+  --cream:#F7F4EF;--cream-deep:#EFEAE2;--white:#FFF;
+  --orange:#FF4F1F;--orange-soft:#FFE9E1;
+  --blue:#2A6DB5;--blue-soft:#E6EFF9;
+  --green:#1C7A5B;--green-soft:#E1F1EB;
+  --amber:#9A6B00;--amber-soft:#FBF0D8;
+  --gray-soft:#ECEAE6;
+  --radius:14px;--maxw:1140px;
+  --shadow:0 1px 2px rgba(21,21,29,.05),0 8px 28px rgba(21,21,29,.06);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:108px}
+body{margin:0;background:var(--cream);color:var(--ink);font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+.skip{position:absolute;left:-9999px}
+.skip:focus{left:12px;top:12px;background:var(--ink);color:#fff;padding:10px 16px;border-radius:8px;z-index:200}
+
+.nav{position:sticky;top:0;z-index:100;background:rgba(247,244,239,.93);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav-inner{max-width:var(--maxw);margin:0 auto;padding:0 28px;display:flex;align-items:center;gap:26px;height:84px}
+.brand{display:flex;align-items:center;gap:22px;white-space:nowrap;text-decoration:none;flex:none}
+/* Si un logo se ve chico, es espacio transparente del PNG: sube su height aquí. */
+.brand img{display:block;width:auto}
+.brand .g-logo{height:33px}
+.brand .b-logo{height:50px}
+.brand .rule{width:1px;height:40px;background:var(--line-strong);flex:none}
+.nav-links{display:flex;gap:1px;flex:1;justify-content:flex-end;overflow-x:auto;scrollbar-width:none}
+.nav-links::-webkit-scrollbar{display:none}
+.nav-links{gap:3px}
+.nav-links a{text-decoration:none;color:var(--muted);font-size:13.5px;font-weight:500;padding:8px 14px;border-radius:999px;white-space:nowrap;transition:.15s}
+.nav-links a:hover{color:var(--ink);background:var(--cream-deep)}
+.nav-links a.active{color:var(--ink);background:var(--white);box-shadow:var(--shadow);font-weight:600}
+.btn-print{border:1px solid var(--line-strong);background:var(--white);color:var(--ink);font:inherit;font-size:12.5px;font-weight:600;padding:9px 16px;border-radius:999px;cursor:pointer;white-space:nowrap;flex:none}
+.btn-print:hover{border-color:var(--ink)}
+.progress{position:absolute;bottom:-1px;left:0;height:2px;background:var(--orange);width:0}
+
+.hero{background:var(--ink);color:#fff;padding:70px 0 0;position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;top:-180px;right:-140px;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle at 35% 35%,rgba(255,79,31,.30),rgba(255,79,31,0) 68%)}
+.hero .wrap{position:relative}
+.eyebrow{display:inline-flex;align-items:center;gap:9px;font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#FFB9A3;margin-bottom:24px}
+.eyebrow::before{content:"";width:28px;height:2px;background:var(--orange)}
+.hero h1{font-size:clamp(2rem,4.4vw,3.3rem);line-height:1.08;letter-spacing:-.035em;font-weight:800;margin:0 0 20px;max-width:19ch}
+.hero h1 em{font-style:normal;color:var(--orange)}
+.hero-lead{font-size:clamp(1rem,1.5vw,1.15rem);color:#C9C7D1;max-width:60ch;margin:0 0 26px}
+.hero-note{font-size:13.5px;color:#9B99A6;max-width:76ch;border-left:2px solid rgba(255,79,31,.6);padding-left:16px;margin-bottom:40px}
+.statbar{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,.12);border-top:1px solid rgba(255,255,255,.12)}
+.statbar .stat{background:var(--ink);padding:24px 20px 28px}
+.statbar .num{font-size:clamp(1.6rem,2.8vw,2.15rem);font-weight:800;letter-spacing:-.04em;line-height:1;margin-bottom:8px}
+.statbar .num small{font-size:.55em;font-weight:600;color:var(--orange);margin-left:3px}
+.statbar .lbl{font-size:12.5px;color:#A9A7B3;line-height:1.45}
+
+section{padding:72px 0;border-bottom:1px solid var(--line)}
+section:nth-of-type(even){background:var(--white)}
+.sec-head{margin-bottom:38px;max-width:72ch}
+.sec-num{display:flex;align-items:center;gap:12px;font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--orange);margin-bottom:16px}
+.sec-num b{font-size:13px;color:var(--ink);font-weight:800}
+.sec-num::after{content:"";flex:1;height:1px;background:var(--line);max-width:110px}
+h2{font-size:clamp(1.45rem,2.6vw,2rem);line-height:1.2;letter-spacing:-.03em;font-weight:700;margin:0 0 14px}
+h2 em{font-style:normal;background:linear-gradient(transparent 62%,var(--orange-soft) 62%)}
+.sec-lead{font-size:16px;color:var(--muted);margin:0;max-width:70ch}
+h3{font-size:1.04rem;font-weight:700;letter-spacing:-.015em;margin:0 0 9px}
+h4{font-size:.93rem;font-weight:700;margin:0 0 7px}
+p{margin:0 0 14px}
+p:last-child{margin-bottom:0}
+
+.grid{display:grid;gap:18px}
+.g3{grid-template-columns:repeat(3,1fr)}
+.card{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow)}
+section:nth-of-type(even) .card{background:var(--cream)}
+.card .kicker{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--orange);margin-bottom:11px;display:block}
+.card p{font-size:14.5px;color:var(--ink-soft)}
+.callout{background:var(--ink);color:#EDEBEF;border-radius:var(--radius);padding:26px 30px;margin-top:24px;font-size:15px;line-height:1.6}
+.callout b{color:#fff}
+.callout .q{color:var(--orange);font-weight:700;display:block;margin-bottom:8px;font-size:12px;letter-spacing:.12em;text-transform:uppercase}
+.note{font-size:13.5px;color:var(--muted);border-left:2px solid var(--line-strong);padding-left:16px;margin-top:24px;max-width:84ch}
+.note b{color:var(--ink)}
+
+.storerow{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.subhead{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:30px 0 14px;display:flex;align-items:center;gap:12px}
+.subhead::after{content:"";flex:1;height:1px;background:var(--line)}
+.store{background:var(--white);padding:22px 22px 24px}
+section:nth-of-type(even) .store{background:var(--cream)}
+.store .slabel{display:block;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
+.store .srate{font-size:2.1rem;font-weight:800;letter-spacing:-.04em;line-height:1;margin-bottom:10px;color:var(--orange)}
+.store .srate span{font-size:.6em;vertical-align:.08em}
+.store.alt .srate{color:var(--green)}
+.store p{font-size:13px;color:var(--muted);margin:0}
+.tablewrap{border:1px solid var(--line);border-radius:var(--radius);overflow:auto;background:var(--white);box-shadow:var(--shadow)}
+table{width:100%;border-collapse:collapse;font-size:14px;min-width:700px}
+thead th{background:var(--cream-deep);text-align:left;font-size:11.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);padding:13px 16px;border-bottom:1px solid var(--line-strong)}
+tbody td{padding:13px 16px;border-bottom:1px solid var(--line);vertical-align:top;color:var(--ink-soft)}
+tbody tr:last-child td{border-bottom:none}
+tbody tr:hover{background:var(--cream)}
+tbody td:first-child{font-weight:600;color:var(--ink)}
+.badge{display:inline-block;font-size:11.5px;font-weight:700;padding:4px 10px;border-radius:999px;white-space:nowrap}
+.b-field{background:var(--orange-soft);color:#B8330E}
+.b-yes{background:var(--green-soft);color:var(--green)}
+.b-no{background:var(--gray-soft);color:#5C5C66}
+.b-risk{background:var(--amber-soft);color:var(--amber)}
+
+.chat-layout{display:grid;grid-template-columns:minmax(290px,400px) 1fr;gap:30px;align-items:start}
+.phone{background:var(--white);border:1px solid var(--line-strong);border-radius:18px;overflow:hidden;box-shadow:var(--shadow)}
+.phone-head{background:#3A74B5;color:#fff;padding:12px 18px;font-weight:600;font-size:14px;display:flex;justify-content:space-between;align-items:center}
+.phone-head .time{font-size:11.5px;font-weight:500;opacity:.85}
+.phone-body{padding:16px;display:flex;flex-direction:column;gap:9px;background:#FBFBFC}
+.msg{max-width:85%;padding:10px 13px;border-radius:12px;font-size:13.2px;line-height:1.5}
+.msg.bot{background:#ECECEE;color:#1F1F28;align-self:flex-start;border-bottom-left-radius:3px}
+.msg.me{background:#3A74B5;color:#fff;align-self:flex-end;border-bottom-right-radius:3px;font-weight:500}
+.msg .link{text-decoration:underline;font-weight:600}
+.msg.opt{background:#fff;border:1px solid #C9D6E6;color:#2A5A91;align-self:flex-end;font-weight:600}
+.annot{display:flex;gap:11px;padding:14px 0;border-top:1px solid var(--line);font-size:14px;color:var(--ink-soft)}
+.annot:first-of-type{border-top:none;padding-top:0}
+.annot .n{flex:none;width:23px;height:23px;border-radius:50%;background:var(--ink);color:#fff;font-size:11.5px;font-weight:700;display:grid;place-items:center;margin-top:2px}
+.annot b{color:var(--ink);display:block;margin-bottom:2px}
+
+.journey{display:grid;grid-template-columns:repeat(5,1fr);gap:0}
+.jstep{padding:20px 16px 20px 0;border-top:3px solid var(--line)}
+.jstep:nth-child(-n+3){border-top-color:var(--orange)}
+.jstep .jn{font-size:11px;font-weight:800;letter-spacing:.12em;color:var(--orange);margin-bottom:8px;display:block}
+.jstep h4{font-size:14.5px;margin-bottom:6px}
+.jstep p{font-size:13.2px;color:var(--muted);margin:0}
+
+details{background:var(--white);border:1px solid var(--line);border-radius:12px;margin-bottom:9px;overflow:hidden}
+section:nth-of-type(even) details{background:var(--cream)}
+details[open]{border-color:var(--line-strong);box-shadow:var(--shadow)}
+summary{cursor:pointer;padding:16px 22px;font-weight:600;font-size:15px;list-style:none;display:flex;gap:14px;align-items:flex-start}
+summary::-webkit-details-marker{display:none}
+summary .qn{flex:none;font-size:12px;font-weight:800;color:var(--orange);margin-top:3px;min-width:20px}
+summary::after{content:"+";margin-left:auto;font-size:20px;color:var(--muted);line-height:1;flex:none}
+details[open] summary::after{content:"–"}
+details .body{padding:0 22px 18px 56px;font-size:14.2px;color:var(--ink-soft)}
+details .body .persona{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:var(--blue-soft);color:var(--blue);padding:3px 9px;border-radius:999px;margin-bottom:8px}
+
+.meta{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:30px;padding-top:24px;border-top:1px solid var(--line)}
+.meta div span{display:block;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:5px}
+.meta div b{font-size:14px;font-weight:600}
+
+footer{background:var(--ink);color:#8E8C99;padding:42px 0;font-size:13px}
+footer .wrap{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:center}
+footer b{color:#fff;font-weight:600;display:block;margin-bottom:5px;font-size:14px}
+.totop{color:#fff;text-decoration:none;border:1px solid rgba(255,255,255,.25);padding:9px 17px;border-radius:999px;font-size:12.5px;font-weight:600}
+.totop:hover{background:var(--orange);border-color:var(--orange)}
+
+@media (max-width:1180px){
+  .nav-links a{font-size:12px;padding:7px 8px}
+  .nav-inner{gap:18px}
+}
+@media (max-width:1040px){
+  .nav-links{display:none}
+  .nav-inner{height:78px}
+  .brand .g-logo{height:30px}
+  .brand .b-logo{height:46px}
+}
+@media (max-width:1000px){
+  .statbar,.storerow{grid-template-columns:repeat(2,1fr)}
+  .journey{grid-template-columns:repeat(2,1fr)}
+  .chat-layout{grid-template-columns:1fr}
+  .meta{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:760px){
+  .wrap,.nav-inner{padding:0 18px}
+  section{padding:50px 0}
+  .hero{padding-top:48px}
+  .g3,.journey,.statbar,.meta,.storerow{grid-template-columns:1fr}
+  .nav-inner{height:68px;gap:14px}
+  .brand{gap:16px}
+  .brand .g-logo{height:26px}
+  .brand .b-logo{height:39px}
+  .brand .rule{height:33px}
+  .jstep{padding-right:0}
+}
+@media print{
+  .nav,.btn-print,.totop{display:none}
+  body{background:#fff;font-size:10.5pt}
+  .hero{background:#fff;color:#000;padding:0}
+  .hero h1,.statbar .num{color:#000}
+  .hero-lead,.statbar .lbl,.hero-note{color:#333}
+  .statbar .stat{background:#fff;border:1px solid #ddd}
+  .callout{background:#f3f1ee;color:#000}
+  .callout b{color:#000}
+  section{padding:22px 0;break-inside:avoid}
+  .card,.tablewrap,details{break-inside:avoid;box-shadow:none}
+  details .body{display:block!important}
+  footer{background:#fff;color:#333}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Ir al contenido</a>
+
+<nav class="nav" id="top">
+  <div class="nav-inner">
+    <a class="brand" href="#top" aria-label="Genesys para Bupa México · Diagnóstico de CX">
+      <img class="g-logo" src="https://www.pngall.com/wp-content/uploads/17/Genesys-Logo-Visual-Concept-PNG.png" alt="Genesys">
+      <span class="rule"></span>
+      <img class="b-logo" src="https://www.bitemedica.com/sites/default/files/styles/large/public/inline-images/bupa-logo.png?itok=H2XbdnLy" alt="Bupa México">
+    </a>
+    <div class="nav-links" id="navlinks">
+      <a href="#hipotesis">Hipótesis</a>
+      <a href="#bot">Evidencia</a>
+      <a href="#voz">Voz del cliente</a>
+      <a href="#capacidades">Dónde ayudar</a>
+      <a href="#conversacion">Preguntas</a>
+    </div>
+    <button class="btn-print" onclick="window.print()">Imprimir / PDF</button>
+    <div class="progress" id="prog"></div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <h1>La adopción digital ya existe. ¿Está <em>reduciendo el contacto asistido</em>?</h1>
+    <p class="hero-lead">Diagnóstico construido desde fuera, recorriendo los mismos canales públicos que recorre un asegurado. Su propósito es abrir una conversación con hipótesis y preguntas, no evaluar la operación ni calificar el servicio.</p>
+    <p class="hero-note">Basado en páginas públicas, materiales corporativos y un recorrido propio del asistente virtual y de la línea telefónica de atención, realizado el 15 de octubre de 2026 sin autenticación. Una sola muestra: sirve para precisar preguntas, no para medir desempeño.</p>
+    <div class="statbar">
+      <div class="stat"><div class="num">6</div><div class="lbl">números telefónicos públicos entre atención, ventas, líneas sin costo y asistencia internacional</div></div>
+      <div class="stat"><div class="num">1</div><div class="lbl">asistente virtual activo, guiado por menús: el único texto libre que aceptó fue el nombre</div></div>
+      <div class="stat"><div class="num">0<small>observada</small></div><div class="lbl">continuidad entre el sitio y la llamada en el recorrido de un interesado sin póliza</div></div>
+      <div class="stat"><div class="num">71.9 <small>→ 74</small></div><div class="lbl">NPS global reportado por el Grupo Bupa en 2025 y en el primer semestre de 2026</div></div>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- 01 -->
+<section id="hipotesis">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-num"><b>01</b> Hipótesis de trabajo</div>
+      <h2>Los canales digitales ya existen. Lo que vale la pena medir es si <em>cierran casos o los mueven al teléfono</em>.</h2>
+      <p class="sec-lead">Bupa México opera Mi Bupa, app móvil, Blua, un asistente virtual y envío digital de reembolsos, junto con seis líneas telefónicas y cuatro buzones. La hipótesis no es que falten canales: es que el recorrido puede terminar en un cambio de canal sin que el contexto del cliente viaje con él.</p>
+    </div>
+    <div class="grid g3">
+      <div class="card">
+        <span class="kicker">Hipótesis central</span>
+        <h3>La adopción digital puede crecer sin reducir la demanda asistida</h3>
+        <p>El cliente consulta el estatus de su reembolso en digital y, si la información no es clara, accionable u oportuna, llama de todas formas.</p>
+      </div>
+      <div class="card">
+        <span class="kicker">Lo observado</span>
+        <h3>El canal digital deriva hacia el teléfono</h3>
+        <p>Solicitar una cita en el asistente virtual devolvió un número telefónico. La interacción no cerró la tarea: la trasladó a un canal con mayor costo por contacto.</p>
+      </div>
+      <div class="card">
+        <span class="kicker">Observado en el recorrido</span>
+        <h3>El contexto no cruzó del sitio a la llamada</h3>
+        <p>Se recorrió el sitio y enseguida se marcó: el asesor no tenía registro del contacto previo. Probado en la ruta de un interesado sin póliza; queda abierto si ocurre igual con un asegurado.</p>
+      </div>
+    </div>
+    <div class="callout">
+      <span class="q">La pregunta que ordena toda la conversación</span>
+      <b>¿Qué porcentaje de clientes que consultan el estatus de su reembolso en un canal digital contacta a atención por el mismo caso dentro de las siguientes 48 horas?</b><br><br>
+      Ese número define si la inversión digital está bajando el costo de servir o solo cambiando el punto de entrada. Solo Bupa tiene el dato.
+    </div>
+  </div>
+</section>
+
+<!-- 02 -->
+<section id="bot">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-num"><b>02</b> El asistente virtual, paso a paso</div>
+      <h2>Una conversación real, y <em>cuatro observaciones que vale la pena comentar</em>.</h2>
+      <p class="sec-lead">Recorrido del 15 de octubre de 2026, 12:25 h, en el sitio de Bupa y en Blua, sin autenticación.</p>
+    </div>
+    <div class="chat-layout">
+      <div class="phone">
+        <div class="phone-head"><span>Envíenos un mensaje</span><span class="time">15 oct · 12:25</span></div>
+        <div class="phone-body">
+          <div class="msg bot">¡Hola! 👋 Soy el asistente virtual de Bupa; te ayudaré a resolver tus dudas sobre nuestros seguros y servicios.</div>
+          <div class="msg bot">Para una atención más personalizada, por favor indícame tu nombre.</div>
+          <div class="msg me">daniela</div>
+          <div class="msg bot">Bienvenido <b>daniela</b>. A continuación, selecciona alguna de las siguientes opciones:</div>
+          <div class="msg opt">▸ Asistencia dental</div>
+          <div class="msg bot">Consulta el siguiente documento, el cual brinda información referente a esta cobertura 👇: <span class="link">[LINK]</span></div>
+          <div class="msg opt">▸ Solicitar una cita</div>
+          <div class="msg bot">Puedes agendar tu cita con uno de nuestros asesores marcando al número <b>800 0033 682</b>; también puedes ingresar a <span class="link">[nuestra página]</span></div>
+          <div class="msg bot">¿Puedo ayudarte con algo más? 🤔</div>
+          <div class="msg me">agente</div>
+          <div class="msg bot">Deseas información de tu Póliza (Estado, Reclamos, Facturas, Documentos…)</div>
+        </div>
+      </div>
+      <div>
+        <div class="annot"><div class="n">1</div><div><b>“Agente” no se reconoció como intención de hablar con alguien</b>La palabra más común para pedir una persona devolvió un menú de póliza. En un ramo donde los momentos críticos son emocionales, es la observación de mayor impacto.</div></div>
+        <div class="annot"><div class="n">2</div><div><b>Menú cerrado, no conversación</b>El único texto libre que el flujo aceptó fue el nombre. Un cliente con una pregunta fuera del menú no tiene ruta dentro del chat.</div></div>
+        <div class="annot"><div class="n">3</div><div><b>Resolución por documento y deriva a voz</b>La consulta de cobertura se respondió con un archivo; agendar una cita terminó en un número telefónico. El autoservicio informa, pero traslada el esfuerzo al cliente y genera un contacto asistido adicional.</div></div>
+        <div class="annot"><div class="n">4</div><div><b>Personalización sin reconocimiento ni continuidad</b>Pide el nombre “para una atención más personalizada”, pero el saludo no concuerda en género, no reconoce la póliza y la conversación inicia en blanco cada vez.</div></div>
+        <div class="callout" style="margin-top:20px">
+          <span class="q">Lo que esto no demuestra</span>
+          Un solo recorrido, sin autenticación y en un horario específico. No prueba que no exista una ruta a una persona en otros flujos, ni evalúa la calidad del servicio. Sirve para conversar con evidencia concreta en la mesa.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 -->
+<section id="canales">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-num"><b>03</b> Canales públicos</div>
+      <h2>El inventario es amplio. Lo que queda por demostrar es que <em>operan como un solo recorrido</em>.</h2>
+      <p class="sec-lead">Resumen de lo que ve un cliente sin autenticarse. “No observado” significa que no apareció en este recorrido, no que esté ausente de todos los flujos.</p>
+    </div>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th style="width:20%">Canal</th><th style="width:16%">Estado</th><th style="width:64%">Qué significa para el cliente</th></tr></thead>
+        <tbody>
+          <tr><td>Asistente virtual</td><td><span class="badge b-field">Recorrido en vivo</span></td><td>Existe y responde, pero avanza por botones y resuelve entregando documentos.</td></tr>
+          <tr><td>Paso a una persona desde el chat</td><td><span class="badge b-risk">No se logró</span></td><td>Pedir un agente devolvió un menú de póliza; no se observó transferencia a alguien.</td></tr>
+          <tr><td>Voz / teléfono</td><td><span class="badge b-field">Recorrido en vivo</span></td><td>Seis números por función e IVR clásico de opciones. La ruta para quien aún no tiene póliza lleva a un asesor de forma directa y sin fricción: eso funciona bien.</td></tr>
+          <tr><td>Continuidad web → voz</td><td><span class="badge b-risk">No existió</span></td><td>El asesor no tenía registro del recorrido previo por el sitio ni de la consulta hecha al asistente virtual minutos antes. Probado en la ruta de un interesado sin póliza.</td></tr>
+          <tr><td>Recorrido del asegurado</td><td><span class="badge b-no">No observable</span></td><td>Las opciones para quien sí tiene póliza requieren número de contrato, por lo que el recorrido de reembolsos no pudo recorrerse desde fuera.</td></tr>
+          <tr><td>Correo electrónico</td><td><span class="badge b-yes">Observado</span></td><td>Cuatro buzones segmentados: atención, dictamen, quejas y proveedores. Elegir mal implica reenvío.</td></tr>
+          <tr><td>Autoservicio de reembolsos</td><td><span class="badge b-yes">Observado</span></td><td>Se puede enviar el trámite y consultar el estatus, pero sin aviso proactivo del avance.</td></tr>
+          <tr><td>Mi Bupa, app y Blua</td><td><span class="badge b-yes">Observado</span></td><td>Canales digitales autenticados; queda por ver si su contexto acompaña al cliente cuando llama.</td></tr>
+          <tr><td>Mensajería persistente</td><td><span class="badge b-no">No observado</span></td><td>La conversación inicia en blanco y ofrece empezar una nueva; no hay forma visible de retomar un caso.</td></tr>
+          <tr><td>WhatsApp</td><td><span class="badge b-no">No observado</span></td><td>No se confirmó un número de servicio, en un mercado donde es el canal de mensajería dominante.</td></tr>
+          <tr><td>Devolución de llamada</td><td><span class="badge b-no">No observado</span></td><td>La única alternativa visible a esperar en línea es marcar de nuevo más tarde.</td></tr>
+          <tr><td>Interacción proactiva</td><td><span class="badge b-no">No observado</span></td><td>No se observó asistencia activada por comportamiento ni por abandono de un trámite.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note"><b>Una precaución importante:</b> la presencia de múltiples canales no demuestra que operen de forma aislada. Eso sigue siendo una hipótesis por confirmar con datos de la operación.</p>
+  </div>
+</section>
+
+<!-- 04 -->
+<section id="recorrido">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-num"><b>04</b> El recorrido del reembolso</div>
+      <h2>El momento crítico no es la compra: es el <em>reembolso, cuando el cliente ya está preocupado</em>.</h2>
+      <p class="sec-lead">En gastos médicos la lealtad se define en el momento del siniestro. Cada paso debería reducir incertidumbre; cuando no lo hace, el cliente llama.</p>
+    </div>
+    <div class="journey">
+      <div class="jstep"><span class="jn">01</span><h4>Evento médico</h4><p>Necesita entender qué cubre su póliza y qué documentos requiere.</p></div>
+      <div class="jstep"><span class="jn">02</span><h4>Buscar respuesta</h4><p>Entra al sitio o al asistente. Recibe menús y documentos, no una respuesta a su caso.</p></div>
+      <div class="jstep"><span class="jn">03</span><h4>Enviar el trámite</h4><p>Usa el canal digital para enviar documentación y dar seguimiento.</p></div>
+      <div class="jstep"><span class="jn">04</span><h4>Esperar el dictamen</h4><p>El estatus existe, pero sin aviso proactivo consulta una y otra vez.</p></div>
+      <div class="jstep"><span class="jn">05</span><h4>Llamar de todas formas</h4><p>Marca a atención y vuelve a explicar su caso desde el inicio, aunque acabe de recorrer el canal digital.</p></div>
+    </div>
+    <div class="callout">
+      <span class="q">Lo que mostró el recorrido telefónico</span>
+      El 15 de octubre se recorrieron dos canales de forma consecutiva: primero el asistente virtual del sitio, después la línea de atención. El IVR es un menú clásico de opciones, y la ruta para quien aún no tiene póliza <b>lleva a un asesor de forma directa y sin fricción</b>. Eso funciona bien y conviene decirlo.<br><br>
+      Lo que no ocurrió fue la continuidad: <b>el asesor no tenía registro del recorrido previo por el sitio</b> ni de la consulta hecha al asistente virtual minutos antes. El contacto empezó de cero.<br><br>
+      <b>Alcance de esta prueba:</b> se recorrió la ruta de un interesado sin póliza, por lo que corresponde al recorrido comercial, no al de un asegurado con un reembolso en curso. Si el contexto tampoco viaja en el recorrido de servicio es precisamente una de las preguntas abiertas.
+    </div>
+    <p class="note"><b>Por qué importa.</b> La recaptura de contexto se paga dos veces: en segundos de conversación para la operación y en esfuerzo percibido para quien llama. En el recorrido comercial eso significa que el interés generado en digital no llega al asesor que atiende; en el recorrido de servicio, si ocurriera igual, significaría que un asegurado reconstruye su caso justo en el momento más sensible del seguro. Cuantificar cuánto dura esa reconstrucción en una conversación promedio es una de las mediciones más accesibles para empezar.</p>
+  </div>
+</section>
+
+<!-- 05 -->
+<section id="voz">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-num"><b>05</b> Lo que los clientes comentan en público</div>
+      <h2>Dos fuentes públicas distintas, y <em>las dos apuntan al mismo punto del recorrido</em>.</h2>
+      <p class="sec-lead">Las reseñas de las tiendas hablan de la app, que no es observable sin póliza. Las reseñas del negocio hablan del servicio. Son muestras pequeñas y autoseleccionadas, pero sus temas se repiten y coinciden con lo recorrido.</p>
+    </div>
+    <div class="storerow">
+      <div class="store">
+        <span class="slabel">Google · negocio</span>
+        <div class="srate">3.8 <span>★</span></div>
+        <p>159 reseñas del domicilio corporativo. Califican el servicio, no la app.</p>
+      </div>
+      <div class="store">
+        <span class="slabel">Google Play · la app</span>
+        <div class="srate">3.0 <span>★</span></div>
+        <p>97 reseñas · 10 mil+ descargas · actualizada el 9 de octubre de 2026.</p>
+      </div>
+      <div class="store">
+        <span class="slabel">App Store MX · la app</span>
+        <div class="srate">2.5 <span>★</span></div>
+        <p>41 valoraciones · categoría Salud y forma física.</p>
+      </div>
+      <div class="store alt">
+        <span class="slabel">Contraste · NPS</span>
+        <div class="srate">74</div>
+        <p>NPS global del Grupo Bupa en el primer semestre de 2026, desde 71.9 en 2025.</p>
+      </div>
+    </div>
+    <div class="subhead">Lo que se comenta del servicio</div>
+    <div class="grid g3">
+      <div class="card">
+        <span class="kicker">Tema · tiempo</span>
+        <h3>El reembolso llega, pero el proceso cansa</h3>
+        <p>Un cliente de dos años describe que siempre ha recibido su reembolso, aunque el proceso no es rápido y resulta tedioso hasta que uno aprende cómo funciona. El desenlace es correcto; el esfuerzo para llegar a él, alto.</p>
+      </div>
+      <div class="card">
+        <span class="kicker">Tema · visibilidad</span>
+        <h3>No saber en qué etapa va el trámite</h3>
+        <p>Una reseña describe haber enviado todos los estudios y formatos solicitados y llevar alrededor de tres meses esperando una resolución, sin información intermedia. Donde no hay comunicación proactiva, el silencio se interpreta como negativa.</p>
+      </div>
+      <div class="card">
+        <span class="kicker">Tema · el lado comercial</span>
+        <h3>Pedir una cotización y no recibir respuesta</h3>
+        <p>Otra reseña describe varios días intentando cotizar sin que nadie la contactara, y llamadas sin asesores disponibles. Coincide con el recorrido telefónico: la ruta del interesado llega a una persona, pero el interés generado en digital no la acompaña.</p>
+      </div>
+    </div>
+    <div class="subhead">Lo que se comenta de la app</div>
+    <div class="grid g3">
+      <div class="card">
+        <span class="kicker">Tema · acceso</span>
+        <h3>“No deja ingresar”</h3>
+        <p>Los títulos más frecuentes son fallas de acceso y de inicio de sesión. Quien no puede entrar no tiene autoservicio: su única salida es el canal asistido.</p>
+      </div>
+      <div class="card">
+        <span class="kicker">Tema · vuelta al teléfono</span>
+        <h3>“No funciona… y no contestan”</h3>
+        <p>Una reseña describe el recorrido completo en una línea: la app falla, el cliente marca, y la llamada tampoco resuelve.</p>
+      </div>
+      <div class="card">
+        <span class="kicker">Tema · el reembolso ausente</span>
+        <h3>Un usuario pide poder solicitar reintegros desde la app</h3>
+        <p>La petición sugiere que el trámite no se resuelve ahí. El recorrido más sensible del seguro viviría fuera del canal que el cliente ya tiene instalado.</p>
+      </div>
+    </div>
+    <div class="callout">
+      <span class="q">Lo que las dos fuentes tienen en común</span>
+      Las reseñas del servicio y las de la app describen el mismo momento desde ángulos distintos: <b>la espera sin información y la vuelta al canal asistido</b>. Es exactamente la brecha del recorrido público, donde el asistente entrega un documento en lugar de un estatus y donde no se observó ninguna notificación proactiva del avance del trámite.<br><br>
+      El patrón aparece en los dos extremos del ciclo de vida: quien quiere <b>contratar</b> y no recibe respuesta, y quien ya está <b>asegurado</b> y espera un dictamen sin saber en qué etapa va. En ambos casos el cliente tiene la intención, y lo que falta es que alguien la reciba con contexto.
+    </div>
+    <p class="note"><b>Cómo leer estas señales.</b> Las reseñas atraen de forma natural experiencias extremas, los volúmenes son bajos, algunos comentarios de las tiendas corresponden a versiones anteriores de la app y las reseñas del negocio están asociadas a un domicilio corporativo, por lo que pueden mezclar experiencias de servicio con visitas a oficinas. Se incluyen porque los temas se repiten y coinciden con lo observado, no para caracterizar la satisfacción real de los clientes de Bupa. El indicador confiable sigue siendo el NPS por etapa del recorrido, que solo la operación puede aportar. Consultadas el 15 de octubre de 2026.</p>
+  </div>
+</section>
+
+<!-- 06 -->
+<section id="capacidades">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-num"><b>06</b> Dónde puede ayudar Genesys</div>
+      <h2>Ordenado por <em>evidencia disponible</em>, no por catálogo.</h2>
+      <p class="sec-lead">Las dos primeras responden directamente a lo observado. Las demás dependen de datos que solo Bupa puede aportar, y por eso van después.</p>
+    </div>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th style="width:6%">#</th><th style="width:26%">Capacidad</th><th style="width:38%">Aplicación en el recorrido observado</th><th style="width:30%">Resultado esperado</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>Agente virtual con IA</td><td>Sustituir el flujo de menús por comprensión de intención: estatus autenticado, documentación faltante, cobertura y agendamiento resueltos en el canal.</td><td>Más consultas resueltas donde empiezan.</td></tr>
+          <tr><td>2</td><td>Paso a una persona con contexto</td><td>Ruta explícita a un asesor desde el chat, conservando conversación, intención y datos capturados.</td><td>Sin recaptura de contexto; menor tiempo de atención.</td></tr>
+          <tr><td>3</td><td>Notificaciones proactivas</td><td>Avisos por evento del trámite: documento faltante, dictamen emitido, pago programado.</td><td>Menos llamadas de estatus.</td></tr>
+          <tr><td>4</td><td>Gestión del recorrido</td><td>Medir el reembolso de punta a punta entre lo digital y lo asistido.</td><td>Cuantifica la hipótesis y fija la línea base.</td></tr>
+          <tr><td>5</td><td>Copilot y conocimiento con IA</td><td>Respuestas y resúmenes para el asesor desde la misma fuente que alimenta el canal digital.</td><td>Consistencia entre canales.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note"><b>Alcance, dicho claramente:</b> una plataforma de experiencia aporta datos de interacción y de recorrido, pero no sustituye una plataforma de datos de cliente empresarial ni un sistema de expediente clínico. Conviene delimitarlo desde el inicio.</p>
+  </div>
+</section>
+
+<!-- 06 -->
+<section id="conversacion">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-num"><b>07</b> Preguntas para la conversación</div>
+      <h2>Seis preguntas para completar la capa que <em>no se puede ver desde fuera</em>.</h2>
+      <p class="sec-lead">Varias no tienen respuesta inmediata, y eso en sí mismo suele ser el hallazgo más útil.</p>
+    </div>
+    <details open>
+      <summary><span class="qn">01</span>¿Qué porcentaje de clientes que consultan su reembolso en digital contacta a atención por el mismo caso en las siguientes 48 horas?</summary>
+      <div class="body"><span class="persona">Experiencia del cliente</span><p>Dimensiona todo lo demás. Si el número es alto, la inversión digital está desplazando contactos, no eliminándolos.</p></div>
+    </details>
+    <details>
+      <summary><span class="qn">02</span>Cuando un cliente pide hablar con una persona dentro del chat, ¿qué ocurre hoy?</summary>
+      <div class="body"><span class="persona">Atención a clientes</span><p>En el recorrido, escribir “agente” devolvió un menú. Vale la pena ver si existe una ruta en otros flujos y qué información recibe quien atiende.</p></div>
+    </details>
+    <details>
+      <summary><span class="qn">03</span>Cuando el cliente pasa de un canal digital al teléfono, ¿qué historial ve el asesor que contesta?</summary>
+      <div class="body"><span class="persona">Tecnología</span><p>En el recorrido del 15 de octubre, por la ruta de un interesado sin póliza, el asesor no tenía registro del contacto previo. Las preguntas son dos: si ocurre lo mismo en el recorrido de un asegurado autenticado, y si la causa está en la integración entre sistemas o en que el canal digital no genere un registro que la llamada pueda consultar.</p></div>
+    </details>
+    <details>
+      <summary><span class="qn">04</span>¿Qué proporción de las llamadas corresponde a estatus, documentación faltante o aclaración de cobertura?</summary>
+      <div class="body"><span class="persona">Contact center</span><p>Separa el contacto que requiere criterio humano del que pide información que ya existe en otro canal.</p></div>
+    </details>
+    <details>
+      <summary><span class="qn">05</span>¿Qué tasa de resolución y de abandono tiene hoy el asistente virtual, y cómo se mide?</summary>
+      <div class="body"><span class="persona">Transformación digital</span><p>Un asistente de menús puede mostrar contención alta simplemente porque el cliente se rinde. Importa distinguir resolución de abandono.</p></div>
+    </details>
+    <details>
+      <summary><span class="qn">06</span>¿Qué resultado importa más primero: costo, velocidad de respuesta, NPS del recorrido de reembolso o retención?</summary>
+      <div class="body"><span class="persona">Liderazgo</span><p>Elegir una métrica principal evita un proyecto que intente mejorar todo y termine sin demostrar nada.</p></div>
+    </details>
+    <p class="note"><b>Fuentes y método.</b> Sitio público de Bupa México y Blua, páginas de contacto, Mi Bupa y app móvil, fichas públicas de la app en Google Play y App Store México con sus reseñas, Reporte Anual del Grupo Bupa 2025 y reportes de NPS 2025–2026, además de un recorrido propio del asistente virtual el 15 de octubre de 2026 sin autenticación. La experiencia dentro de la app y el recorrido telefónico de un asegurado no fueron observados directamente, por requerir una póliza activa; el recorrido de voz corresponde a la ruta pública de un interesado sin póliza. No se utilizó información interna ni confidencial. No se hacen afirmaciones sobre sistemas internos, reglas de enrutamiento, niveles de servicio ni desempeño de los equipos: todas las hipótesis están formuladas para confirmarse o descartarse con datos de la operación.</p>
+    <div class="meta">
+      <div><span>Preparado</span><b>15 de octubre de 2026</b></div>
+      <div><span>Audiencia</span><b>Conversación ejecutiva de CX</b></div>
+      <div><span>Evidencia</span><b>Fuentes públicas + recorrido propio</b></div>
+      <div><span>Uso</span><b>Guía de hipótesis y preguntas</b></div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <b>Bupa México · Diagnóstico de experiencia del cliente</b>
+      Preparado por Genesys desde una perspectiva de Consultoría de Soluciones · basado en el recorrido público · no es una auditoría operativa.
+    </div>
+    <a class="totop" href="#top">Volver arriba ↑</a>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var links = Array.prototype.slice.call(document.querySelectorAll('#navlinks a'));
+  // Secciones sin enlace propio heredan el resaltado del enlace que las antecede.
+  var owner = {hipotesis:'hipotesis', bot:'bot', canales:'bot', recorrido:'bot', voz:'voz', capacidades:'capacidades', conversacion:'conversacion'};
+  var sections = Object.keys(owner).map(function(id){ return document.getElementById(id); }).filter(Boolean);
+  var prog = document.getElementById('prog');
+  function onScroll(){
+    var h = document.documentElement;
+    var pct = h.scrollTop / (h.scrollHeight - h.clientHeight || 1);
+    prog.style.width = Math.min(100, Math.max(0, pct*100)) + '%';
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+  if ('IntersectionObserver' in window) {
+    var obs = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(!e.isIntersecting) return;
+        var target = '#' + (owner[e.target.id] || e.target.id);
+        links.forEach(function(a){ a.classList.toggle('active', a.getAttribute('href') === target); });
+      });
+    }, {rootMargin:'-45% 0px -50% 0px', threshold:0});
+    sections.forEach(function(s){ obs.observe(s); });
+  }
+  window.addEventListener('beforeprint', function(){
+    document.querySelectorAll('details').forEach(function(d){ d.open = true; });
+  });
+})();
+</script>
+</body>
+</html>
